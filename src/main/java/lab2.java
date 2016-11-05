@@ -11,12 +11,11 @@ public class lab2 {
         // Целевые состояния для серьёзных тестов
 
         State state = new State(5, 8, 3, 4, State.EMPTY, 2, 7, 6, 1);
-        State target = new State(4, 3, State.EMPTY, 6, 5, 2, 7, 1, 8);   // Лайт оптимальное за 14
-        //State target = new State(1, 2, 3, 4, 5, 6, 7, 8, State.EMPTY);  // Хард оптимальное за 22
+        //State target = new State(4, 3, State.EMPTY, 6, 5, 2, 7, 1, 8);   // Лайт оптимальное за 14
+        State target = new State(1, 2, 3, 4, 5, 6, 7, 8, State.EMPTY);  // Хард оптимальное за 22
 
 
-        //new SearchLimitedDeep(target, false, 17).Start(state);
-        //new SearchWidth(target, false).Start(state);
-        new SearchManhattan(target, false).Start(state);
+        //new SearchManhattan(target, false).Start(state);
+        new SearchCountNotRight(target, false).Start(state);
     }
 }
