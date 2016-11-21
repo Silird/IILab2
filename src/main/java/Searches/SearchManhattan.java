@@ -99,7 +99,7 @@ public class SearchManhattan {
                 state.setCost(cost);
 
                 queue.add(state);
-                if (step) System.out.println("Добавляется в очередь:");
+                if (step) System.out.println("Добавляется в очередь (эвристическая стоимость: " + cost + "):");
             }
             else {
                 if (step) System.out.println("Не добавляется в очередь:");
@@ -204,6 +204,8 @@ public class SearchManhattan {
                     }
                 }
             }
+            result += state.getDeep();
+
         }
         return result;
     }

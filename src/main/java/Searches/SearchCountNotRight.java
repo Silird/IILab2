@@ -101,7 +101,7 @@ public class SearchCountNotRight {
                 state.setCost(cost);
 
                 queue.add(state);
-                if (step) System.out.println("Добавляется в очередь:");
+                if (step) System.out.println("Добавляется в очередь (эвристическая стоимость: " + cost + "):");
             }
             else {
                 if (step) System.out.println("Не добавляется в очередь:");
@@ -166,6 +166,7 @@ public class SearchCountNotRight {
                     }
                 }
             }
+            result += state.getDeep();
         }
         return result;
     }

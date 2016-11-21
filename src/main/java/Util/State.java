@@ -164,7 +164,22 @@ public class State implements Comparable<State>{
         return true;
     }
     public int compareTo(State o) {
-        return cost.compareTo(o.getCost());
+        int result = cost.compareTo(o.getCost());
+        if (result == 0) {
+            int[][] eqInCell = o.getVertex();
+
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    if (vertex[i][j] < eqInCell[i][j]) {
+                        return -1;
+                    }
+                    if (vertex[i][j] > eqInCell[i][j]) {
+                        return 1;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     public Integer getCost() {
