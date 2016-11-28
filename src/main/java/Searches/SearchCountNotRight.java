@@ -14,7 +14,7 @@ public class SearchCountNotRight {
     private int iteration;
     private List<State> used = new ArrayList<State>();
     private MyTreeSet queue = new MyTreeSet();
-    private State target; //, next;
+    private State target;
     private int maxSize;
 
     public SearchCountNotRight(State target, boolean step) {
@@ -27,7 +27,6 @@ public class SearchCountNotRight {
     }
 
     public void Start(State start) {
-        //next = start;
         queue.add(start);
         iteration = 0;
         boolean cont = true;
@@ -52,17 +51,10 @@ public class SearchCountNotRight {
 
                 System.out.println("\nВновь открытые:\n");
             }
-            //List<State> newStates = new ArrayList<State>();
-            //newStates.add(currentState.Move(State.UP));
-            //newStates.add(currentState.Move(State.RIGHT));
-            //newStates.add(currentState.Move(State.DOWN));
-            //newStates.add(currentState.Move(State.LEFT));
             Add(currentState.Move(State.UP));
             Add(currentState.Move(State.RIGHT));
             Add(currentState.Move(State.DOWN));
             Add(currentState.Move(State.LEFT));
-
-            //next = CalculateNextState(newStates);
 
             PrintQueue();
 
@@ -94,9 +86,6 @@ public class SearchCountNotRight {
             }
             if (!used.contains(state) && !queue.contains(state)) {
                 Integer cost = 0;
-                //if (state.getParent() != null) {
-                //    cost += state.getParent().getCost();
-                //}
                 cost += CalculateEvaluationFunction(state);
                 state.setCost(cost);
 

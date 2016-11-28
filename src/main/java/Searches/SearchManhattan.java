@@ -12,7 +12,7 @@ public class SearchManhattan {
     private int iteration;
     private List<State> used = new ArrayList<State>();
     private MyTreeSet queue = new MyTreeSet();
-    private State target; //, next;
+    private State target;
     private int maxSize;
 
     public SearchManhattan(State target, boolean step) {
@@ -25,7 +25,6 @@ public class SearchManhattan {
     }
 
     public void Start(State start) {
-        //next = start;
         queue.add(start);
         iteration = 0;
         boolean cont = true;
@@ -50,17 +49,10 @@ public class SearchManhattan {
 
                 System.out.println("\nВновь открытые:\n");
             }
-            //List<State> newStates = new ArrayList<State>();
-            //newStates.add(currentState.Move(State.UP));
-            //newStates.add(currentState.Move(State.RIGHT));
-            //newStates.add(currentState.Move(State.DOWN));
-            //newStates.add(currentState.Move(State.LEFT));
             Add(currentState.Move(State.UP));
             Add(currentState.Move(State.RIGHT));
             Add(currentState.Move(State.DOWN));
             Add(currentState.Move(State.LEFT));
-
-            //next = CalculateNextState(newStates);
 
             PrintQueue();
 
@@ -92,9 +84,6 @@ public class SearchManhattan {
             }
             if (!used.contains(state) && !queue.contains(state)) {
                 Integer cost = 0;
-                //if (state.getParent() != null) {
-                //    cost += state.getParent().getCost();
-                //}
                 cost += CalculateEvaluationFunction(state);
                 state.setCost(cost);
 
@@ -118,44 +107,6 @@ public class SearchManhattan {
             }
         }
     }
-
-    /*
-    private State CalculateNextState(List<State> states) {
-        State tmpNext = null;
-        Integer tmpEvaluationFunction = null;
-        for (State state : states) {
-            if ((tmpNext == null) && (state != null) && !used.contains(state)) {
-                tmpNext = state;
-            } else {
-                if ((state != null) && !used.contains(state)) {
-                    Integer tmpEvaluationFunction1;
-                    if (tmpEvaluationFunction != null) {
-                        tmpEvaluationFunction1 = tmpEvaluationFunction;
-                    } else {
-                        tmpEvaluationFunction1 = CalculateEvaluationFunction(tmpNext);
-                    }
-                    Integer tmpEvaluationFunction2 = CalculateEvaluationFunction(state);
-                    if (tmpEvaluationFunction1 > tmpEvaluationFunction2) {
-                        tmpNext = state;
-                        tmpEvaluationFunction = tmpEvaluationFunction2;
-                    }
-                    else {
-                        tmpEvaluationFunction = tmpEvaluationFunction1;
-                    }
-                }
-            }
-        }
-
-        if ((tmpEvaluationFunction == null) && (tmpNext != null)) {
-            tmpEvaluationFunction = CalculateEvaluationFunction(tmpNext);
-        }
-
-        if ((tmpEvaluationFunction != null) && (tmpEvaluationFunction == 0)) {
-            End(tmpNext);
-        }
-        return tmpNext;
-    }
-    */
 
     private void End(State state) {
         Stack<State> path = new Stack<State>();
